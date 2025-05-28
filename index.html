@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- PWA meta -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <title>Ismétlési Ütemező</title>
+  <!-- Tailwind CSS CDN (opcionális, de modern kinézetet biztosít) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Saját stílus -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 text-gray-900 transition-colors duration-300" id="body">
+  <!-- E-mail felvétel modal -->
+  <div id="emailModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow-md">
+      <h2 class="text-xl font-bold mb-4">Add meg az e-mail címed!</h2>
+      <input type="email" id="userEmail" placeholder="például: user@example.com" class="border p-2 w-full mb-4" title="Add meg az e-mail címed, hogy e-mail értesítést kaphass!">
+      <button id="saveEmailBtn" class="bg-blue-600 text-white px-4 py-2 rounded">Mentés</button>
+    </div>
+  </div>
+
+  <header class="p-4 bg-blue-600 text-white flex justify-between items-center">
+    <h1 class="text-2xl">Ismétlési Ütemező</h1>
+    <!-- Dark/Light mode toggle -->
+    <button id="toggleMode" class="bg-blue-800 px-3 py-1 rounded">Dark/Light mód</button>
+  </header>
+
+  <main class="p-4">
+    <!-- Gyors hozzáadás -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Gyors hozzáadás</h2>
+      <form id="quickAddForm" class="flex flex-col md:flex-row gap-2">
+        <input type="text" id="quickTitle" placeholder="Tananyag címe" class="border p-2 flex-1" title="Írd be a tananyag címét (gyors hozzáadás)">
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Hozzáadás</button>
+      </form>
+    </section>
+
+    <!-- Teljes hozzáadás -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Új tananyag hozzáadása (részletes)</h2>
+      <form id="fullAddForm" class="flex flex-col gap-2">
+        <input type="text" id="title" placeholder="Tananyag címe" class="border p-2" title="A tananyag címe">
+        <input type="text" id="category" placeholder="Kategória" class="border p-2" title="A tananyag kategóriája">
+        <textarea id="note" placeholder="Megjegyzés" class="border p-2" title="Bármilyen megjegyzés"></textarea>
+        <input type="date" id="startDate" class="border p-2" title="A tanulás kezdési dátuma">
+        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Hozzáadás</button>
+      </form>
+    </section>
+
+    <!-- Statisztikák és export -->
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Előrehaladás</h2>
+      <div id="stats" class="mb-4"></div>
+      <button id="exportBtn" class="bg-gray-700 text-white px-4 py-2 rounded">Exportálás JSON-ba</button>
+    </section>
+
+    <!-- Ismétlendő anyagok listája -->
+    <section>
+      <h2 class="text-xl font-semibold mb-2">Ma ismételendő</h2>
+      <ul id="todayList" class="mb-4"></ul>
+      
+      <h2 class="text-xl font-semibold mb-2">Holnapra esedékes</h2>
+      <ul id="tomorrowList" class="mb-4"></ul>
+      
+      <h2 class="text-xl font-semibold mb-2">Már lemaradtál</h2>
+      <ul id="overdueList" class="mb-4"></ul>
+    </section>
+  </main>
+
+  <!-- Szkriptek -->
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
