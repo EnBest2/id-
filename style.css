@@ -1,0 +1,47 @@
+/* Alap stílusok */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Dark mód */
+body.dark {
+  background-color: #1F2937;
+  color: #F3F4F6;
+}
+
+/* Modal stílus */
+#emailModal {
+  z-index: 1000;
+}
+
+/* Zöld pipa animáció */
+.checkmark {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #10B981;
+  position: relative;
+  animation: fadeIn 0.5s ease-out;
+}
+.checkmark:after {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 6px;
+  font-size: 20px;
+  color: white;
+}
+
+/* Egyszerű fade in animáció */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive javítások */
+@media (max-width: 640px) {
+  header, main {
+    padding: 1rem;
+  }
+}
